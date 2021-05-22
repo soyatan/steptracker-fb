@@ -1,4 +1,4 @@
-const INITIAL_STATE = {errorMessage:null,token:null};
+const INITIAL_STATE = {user:null,status:false,errorMessage:null};
 
 //selector
 export const userSelector=state=>state.userState;
@@ -50,11 +50,11 @@ export const signOutCurrentUser = () =>{
         
     }
 }
-export const setUserToken = (token) =>{
+export const setUserToken = (user) =>{
     return{
         type: SET_USER,
         payload:{
-            token
+            user
         }
     }
 }
@@ -62,9 +62,9 @@ export const setUserToken = (token) =>{
 export const userReducer =(state=INITIAL_STATE,action)=>{
     switch(action.type){
         case SET_USER:
-            return ({token:action.payload.token,errorMessage:null})
+            return ({user:action.payload.user,errorMessage:null,status:true})
         case SIGNOUT_USER:
-            return ({token:null,errorMessage:null})
+            return ({user:null,errorMessage:null,status:false})
         case ADD_ERROR:
              return ({...state,errorMessage:action.payload.error})
         

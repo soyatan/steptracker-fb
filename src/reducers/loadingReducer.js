@@ -1,4 +1,4 @@
-const INITIAL_STATE = true;
+const INITIAL_STATE = false;
 
 //selector
 export const loadingSelector=state=>state.loadingState;

@@ -26,32 +26,29 @@ import {
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {CREATE_RECORD_REQUEST} from '../recordReducer';
 import {setNavigating} from '../locationReducer';
+import database from '@react-native-firebase/database';
 
 function* createTrackRequestz(action) {
   const {locations, name} = action.payload;
+
   if (locations.length < 1) {
     return console.log('short request');
   }
   try {
-    const {token} = yield select(userSelector);
     console.log(
       'track name: ',
       name,
       ' record track requested',
       locations.length,
     );
+    const user = yield select (userSelector);
+    
+    const record={name: name, locations: locations, user:user.user.uid};
+    
+    yield database().ref('/records').set(record)
 
-    const body = yield JSON.stringify({name: name, locations: locations});
-
-    const response = yield call(fetch, baseURL + '/tracks', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + token,
-      },
-      body: body,
-    });
+    
+    
 
     yield put(setNavigating('index'));
   } catch (error) {

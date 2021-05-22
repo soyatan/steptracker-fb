@@ -41,7 +41,7 @@ const TrackCreate = ({navigation}) => {
   const isNavigate = location.navigate;
   const records = useSelector(recordSelector);
 
-  const {recording} = useSelector(locationSelector);
+  //console.log(useSelector(locationSelector))
 
   const startWatching = async () => {
     try {
@@ -75,12 +75,13 @@ const TrackCreate = ({navigation}) => {
   //on focus if not tracking, we start tracking
   useEffect(() => {
     const unsubscribe1 = navigation.addListener('focus', () => {
-      console.log('FOCUS LISTENER RUNNING');
+      console.log('CREATE SCREEN ON');
       if (!isTracking) {
         setTracking(true);
         startWatching();
       }
     });
+    return unsubscribe1;
   }, [navigation, isTracking, isRecording]);
 
   //on blur if not recording stop tracking
@@ -89,7 +90,7 @@ const TrackCreate = ({navigation}) => {
       const unsubscribe2 = navigation.addListener('blur', () => {
         console.log('blur on navigation');
         {
-          console.log('changing tracking to false');
+          console.log('TRACKING OFF');
           setTracking(false);
         }
       });
@@ -101,7 +102,7 @@ const TrackCreate = ({navigation}) => {
 
   useEffect(() => {
     if (!isTracking) {
-      console.log('TRACKING FALSE YAPILDI');
+      console.log('TRACKING OFF');
       if (subscriber) {
         subscriber.remove();
         setSubscriber(null);
@@ -113,7 +114,7 @@ const TrackCreate = ({navigation}) => {
   //
   useEffect(() => {
     if (isRecording) {
-      console.log('RECORDING STARTED');
+      console.log('RECORDING ON');
       dispatch(eraseLocations());
       if (subscriber) {
         subscriber.remove();
@@ -122,7 +123,7 @@ const TrackCreate = ({navigation}) => {
       startWatching();
     }
     if (!isRecording) {
-      console.log('RECORDING DISABLED');
+      console.log('RECORDING OFF');
       if (subscriber) {
         subscriber.remove();
         setSubscriber(null);
@@ -140,7 +141,7 @@ const TrackCreate = ({navigation}) => {
 
   const startRecording = async () => {
     setIsRecording(true);
-    //await setTracking(true);
+    
   };
 
   const stopRecording = async () => {

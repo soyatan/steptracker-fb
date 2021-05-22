@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/step.iml" filepath="$PROJECT_DIR$/.idea/modules/step.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/step.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/step.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/333733387/step.expo-constants.iml" filepath="$PROJECT_DIR$/.idea/modules/333733387/step.expo-constants.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1991686052/step.expo-file-system.iml" filepath="$PROJECT_DIR$/.idea/modules/-1991686052/step.expo-file-system.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1799511369/step.expo-image-loader.iml" filepath="$PROJECT_DIR$/.idea/modules/1799511369/step.expo-image-loader.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/803011129/step.expo-location.iml" filepath="$PROJECT_DIR$/.idea/modules/803011129/step.expo-location.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1017768640/step.expo-permissions.iml" filepath="$PROJECT_DIR$/.idea/modules/-1017768640/step.expo-permissions.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1443529178/step.react-native-async-storage_async-storage.iml" filepath="$PROJECT_DIR$/.idea/modules/-1443529178/step.react-native-async-storage_async-storage.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/661279169/step.react-native-community_geolocation.iml" filepath="$PROJECT_DIR$/.idea/modules/661279169/step.react-native-community_geolocation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-271465118/step.react-native-community_masked-view.iml" filepath="$PROJECT_DIR$/.idea/modules/-271465118/step.react-native-community_masked-view.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1897032117/step.react-native-gesture-handler.iml" filepath="$PROJECT_DIR$/.idea/modules/1897032117/step.react-native-gesture-handler.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1777984057/step.react-native-linear-gradient.iml" filepath="$PROJECT_DIR$/.idea/modules/-1777984057/step.react-native-linear-gradient.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/404795070/step.react-native-maps.iml" filepath="$PROJECT_DIR$/.idea/modules/404795070/step.react-native-maps.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/376059719/step.react-native-reanimated.iml" filepath="$PROJECT_DIR$/.idea/modules/376059719/step.react-native-reanimated.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1661867810/step.react-native-safe-area-context.iml" filepath="$PROJECT_DIR$/.idea/modules/-1661867810/step.react-native-safe-area-context.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/347285110/step.react-native-screens.iml" filepath="$PROJECT_DIR$/.idea/modules/347285110/step.react-native-screens.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1417640639/step.react-native-splash-screen.iml" filepath="$PROJECT_DIR$/.idea/modules/-1417640639/step.react-native-splash-screen.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-2024732205/step.react-native-svg.iml" filepath="$PROJECT_DIR$/.idea/modules/-2024732205/step.react-native-svg.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1781538622/step.unimodules-app-loader.iml" filepath="$PROJECT_DIR$/.idea/modules/1781538622/step.unimodules-app-loader.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-576328962/step.unimodules-barcode-scanner-interface.iml" filepath="$PROJECT_DIR$/.idea/modules/-576328962/step.unimodules-barcode-scanner-interface.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-132433584/step.unimodules-camera-interface.iml" filepath="$PROJECT_DIR$/.idea/modules/-132433584/step.unimodules-camera-interface.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-126385188/step.unimodules-constants-interface.iml" filepath="$PROJECT_DIR$/.idea/modules/-126385188/step.unimodules-constants-interface.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1267592174/step.unimodules-core.iml" filepath="$PROJECT_DIR$/.idea/modules/1267592174/step.unimodules-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-2145813629/step.unimodules-face-detector-interface.iml" filepath="$PROJECT_DIR$/.idea/modules/-2145813629/step.unimodules-face-detector-interface.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1567954861/step.unimodules-file-system-interface.iml" filepath="$PROJECT_DIR$/.idea/modules/1567954861/step.unimodules-file-system-interface.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-667985990/step.unimodules-font-interface.iml" filepath="$PROJECT_DIR$/.idea/modules/-667985990/step.unimodules-font-interface.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/82284464/step.unimodules-image-loader-interface.iml" filepath="$PROJECT_DIR$/.idea/modules/82284464/step.unimodules-image-loader-interface.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1386354577/step.unimodules-permissions-interface.iml" filepath="$PROJECT_DIR$/.idea/modules/1386354577/step.unimodules-permissions-interface.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1672836106/step.unimodules-react-native-adapter.iml" filepath="$PROJECT_DIR$/.idea/modules/-1672836106/step.unimodules-react-native-adapter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-664871866/step.unimodules-sensors-interface.iml" filepath="$PROJECT_DIR$/.idea/modules/-664871866/step.unimodules-sensors-interface.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1667484080/step.unimodules-task-manager-interface.iml" filepath="$PROJECT_DIR$/.idea/modules/-1667484080/step.unimodules-task-manager-interface.iml" />
+    </modules>
+  </component>
+</project>

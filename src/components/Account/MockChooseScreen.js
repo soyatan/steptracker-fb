@@ -1,21 +1,17 @@
 import React, {useEffect} from 'react';
 
-import {Text, TouchableOpacity,DevSettings, View} from 'react-native';
+import {Text, TouchableOpacity, DevSettings, View} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {useDispatch} from 'react-redux';
+import { setMock, SET_MOCK } from '../../reducers/mockReducer';
 import {signOutRequest} from '../../reducers/userReducer';
 import styles from './styles';
 import Compass from '../Icons/compass.svg'
 import MapLocation from '../Icons/maplocation.svg'
-import { setMock, SET_MOCK } from '../../reducers/mockReducer';
 
-const AccountScreen = () => {
+const MockChooseScreen = ({navigation}) => {
   const dispatch = useDispatch();
 
-
-  const signOut = () => {
-    dispatch(signOutRequest());
-  };
   const setMockOff = () => {
     dispatch((setMock('nomock')));
     DevSettings.reload();
@@ -27,15 +23,13 @@ const AccountScreen = () => {
     //navigation.navigate("Create")
   };
 
+
   return (
     <LinearGradient
       colors={['#343d46', '#65737e']}
       style={styles.container}
       start={{x: 0, y: 0}}
       end={{x: 1, y: 1}}>
-      <TouchableOpacity style={styles.mockoption} onPress={() => signOut()}>
-        <Text style={styles.mockoptiontext}>CLICK TO SIGN OUT</Text>
-      </TouchableOpacity>
       <TouchableOpacity style={styles.mockoption} onPress={() => setMockOff()}>
         <Text style={styles.mockoptiontext}>Continue with phone locations</Text>
         <MapLocation width={65} height={65}/>
@@ -48,4 +42,4 @@ const AccountScreen = () => {
   );
 };
 
-export default AccountScreen;
+export default MockChooseScreen;

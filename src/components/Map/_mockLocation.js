@@ -1,11 +1,5 @@
 import * as Location from 'expo-location';
 
-import React from 'react';
-
-import {useSelector} from 'react-redux';
-import {locationSelector} from '../../reducers/locationReducer';
-
-import initalCoord from '../Tracks/initcooords';
 
 export default _mockLocations = (longs, lats) => {
   /*

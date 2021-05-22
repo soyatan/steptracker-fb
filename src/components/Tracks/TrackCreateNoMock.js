@@ -25,9 +25,9 @@ import {
   createRecordRequest,
   recordSelector,
 } from '../../reducers/recordReducer';
-import _mockLocation from '../Map/_mockLocation';
+//import _mockLocation from '../Map/_mockLocation';
 
-const TrackCreate = ({navigation}) => {
+const TrackCreateNoMock = ({navigation}) => {
   //_mockLocations();
   const dispatch = useDispatch();
   const [err, setErr] = useState(null);
@@ -68,7 +68,7 @@ const TrackCreate = ({navigation}) => {
 
   //on first render we startwatching
   useEffect(() => {
-    _mockLocation(29.1197331, 40.9413056);
+    //_mockLocation(29.1197331, 40.9413056);
     startWatching();
   }, []);
 
@@ -80,6 +80,7 @@ const TrackCreate = ({navigation}) => {
         setTracking(true);
         startWatching();
       }
+      
     });
   }, [navigation, isTracking, isRecording]);
 
@@ -160,7 +161,7 @@ const TrackCreate = ({navigation}) => {
       <Map />
 
       {err ? (
-        <Text style={{color: 'red'}}>Please enable location services</Text>
+        <Text style={{color: 'red'}}>Please dasdasdasdsadservices</Text>
       ) : null}
       <View style={styles.bottomcontainer}>
         <View style={styles.trackinputcontainer}>
@@ -184,4 +185,4 @@ const TrackCreate = ({navigation}) => {
   );
 };
 
-export default TrackCreate;
+export default TrackCreateNoMock;

@@ -2,12 +2,13 @@ import React, {useEffect} from 'react';
 import SplashScreen from 'react-native-splash-screen';
 import { Provider} from 'react-redux';
 
-import store from './reducers/store';
+import {storey} from './reducers/store';
 
 import { Text,  View,} from 'react-native';
 import MainContainer from './components/Main/MainContainer';
+import { PersistGate } from 'redux-persist/integration/react';
 
-
+const { store, persistor } = storey();
 
 const App = () => {
 
@@ -20,7 +21,9 @@ const App = () => {
 
   return (
     <Provider store={store}>
-      <MainContainer/>
+       <PersistGate loading={null} persistor={persistor}>
+          <MainContainer/>
+       </PersistGate>
     </Provider>
   )}
 

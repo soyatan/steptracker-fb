@@ -315,4 +315,6 @@ Icon
 .AppleDesktop
 Network Trash Folder
 Temporary Items
-android/app/src/main/res/values/secrets.xml
+
+android/app/src/main/res/values/strings.xml
+

@@ -264,6 +264,8 @@ temp/
 #
 # gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
 
+.secrets
+
 ## User settings
 xcuserdata/
 
@@ -313,3 +315,4 @@ Icon
 .AppleDesktop
 Network Trash Folder
 Temporary Items
+android/app/src/main/res/values/secrets.xml

@@ -7,6 +7,7 @@ import SplashScreen from 'react-native-splash-screen';
 import {useDispatch, useSelector} from 'react-redux';
 import {fetchRecords, recordSelector} from '../../reducers/recordReducer';
 import {signOutRequest} from '../../reducers/userReducer';
+import { usersSelector } from '../../reducers/usersReducer';
 import Play from '../Icons/play.svg';
 import styles from './styles';
 
@@ -20,7 +21,16 @@ const TracksIndex = ({navigation}) => {
   }, [navigation]);
 
   const records = useSelector(recordSelector);
-  console.log('records are',records)
+  const users = useSelector(usersSelector);
+  console.log(users)
+
+  const findUser = (id) =>{
+  if (records){
+    const curUser=users.find(user=>user.id===id);
+    return curUser.username
+  }
+  else return 'unknown user'
+}
 
 
 
@@ -38,13 +48,15 @@ const TracksIndex = ({navigation}) => {
           data={records}
           keyExtractor={(item, index) => index}
           renderItem={item => (
+            
             <TouchableOpacity
               style={styles.recordslist}
               onPress={() =>
-                navigation.navigate('Details', {id: item.item._id})
+                navigation.navigate('Details', {id: item.item.id})
               }>
               <Text style={styles.listtext}> {item.index} </Text>
               <Text style={styles.listtext}> {item.item.name} </Text>
+              <Text style={styles.listtext}> {findUser(item.item.uid)} </Text>
               <Play width={35} height={35} />
 
           </TouchableOpacity>

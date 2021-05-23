@@ -45,9 +45,10 @@ export default styles = StyleSheet.create({
     marginBottom: 5,
   },
   recordingbuttoncontainer: {
-    marginTop: 3,
+ 
     width: w * 0.9,
     alignItems: 'center',
+    
   },
 
   tabbartitle: {

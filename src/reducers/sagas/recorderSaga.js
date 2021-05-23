@@ -47,9 +47,6 @@ function* createTrackRequestz(action) {
     
     yield database().ref('/records').push(record)
 
-    
-    
-
     yield put(setNavigating('index'));
   } catch (error) {
     yield put(addError('Something went wrong with sign-up, please try again'));

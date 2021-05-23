@@ -22,7 +22,7 @@ const TrackDetails = ({route, navigation}) => {
     });
   }, [navigation]);
 
-  const record = records.find(item => item._id === id);
+  const record = records.find(item => item.id === id);
   const initialCoords = record.locations[0].coords;
   console.log(initialCoords);
 

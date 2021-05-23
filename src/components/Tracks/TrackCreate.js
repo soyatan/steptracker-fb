@@ -18,6 +18,7 @@ import {
   locationSelector,
   addLocation,
   eraseLocations,
+  setNavigating,
 } from '../../reducers/locationReducer';
 import TracknameInput from './TracknameInput';
 import RecordButton from './RecordButton';
@@ -25,7 +26,7 @@ import {
   createRecordRequest,
   recordSelector,
 } from '../../reducers/recordReducer';
-import _mockLocation from '../Map/_mockLocation';
+import {_mockLocation, _removeLocListener} from '../Map/_mockLocation';
 import database from '@react-native-firebase/database';
 
 const TrackCreate = ({navigation}) => {
@@ -39,11 +40,11 @@ const TrackCreate = ({navigation}) => {
 
   const location = useSelector(locationSelector);
   const isNavigate = location.navigate;
-  const records = useSelector(recordSelector);
+
+
+// console.log('isTracking-isrecording-subscriber',isTracking,isRecording,subscriber)
   
 
-  
-  //console.log(useSelector(locationSelector))
 
   const startWatching = async () => {
     try {
@@ -67,6 +68,7 @@ const TrackCreate = ({navigation}) => {
       setErr(error);
     }
   };
+  
 
   
 
@@ -74,19 +76,22 @@ const TrackCreate = ({navigation}) => {
   useEffect(() => {
     _mockLocation(29.1197331, 40.9413056);
     startWatching();
+   
   }, []);
 
   //on focus if not tracking, we start tracking
   useEffect(() => {
     const unsubscribe1 = navigation.addListener('focus', () => {
       console.log('CREATE SCREEN ON');
+      dispatch(setNavigating('create'))
       if (!isTracking) {
         setTracking(true);
         startWatching();
       }
+      setTrackName('');
     });
     return unsubscribe1;
-  }, [navigation, isTracking, isRecording]);
+  }, [navigation,isTracking]);
 
   //on blur if not recording stop tracking
   useEffect(() => {
@@ -100,9 +105,10 @@ const TrackCreate = ({navigation}) => {
       });
       return unsubscribe2;
     }
+ 
   }, [navigation, isTracking, isRecording]);
 
-  //set tracking false yapıldığında duruyor
+  //action when stop tracking
 
   useEffect(() => {
     if (!isTracking) {
@@ -113,9 +119,8 @@ const TrackCreate = ({navigation}) => {
       }
     }
   }, [isTracking, isRecording]);
-  //navigation olunca hook çalıaşcak isfocused
-  //ve bunun üzerine startwatching çalışacak
-  //
+
+  
   useEffect(() => {
     if (isRecording) {
       console.log('RECORDING ON');
@@ -132,7 +137,7 @@ const TrackCreate = ({navigation}) => {
         subscriber.remove();
         setSubscriber(null);
       }
-      startWatching();
+      //startWatching();
       dispatch(createRecordRequest(location.locations, trackName));
     }
   }, [isRecording]);
@@ -177,7 +182,7 @@ const TrackCreate = ({navigation}) => {
           </Text>
           <TracknameInput
             onChangeText={setTrackName}
-            staate={trackName}
+            state={trackName}
             placeholder={'My big trip'}
           />
         </View>

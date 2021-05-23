@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react';
-
+import React, {useEffect,useState} from 'react';
+import { useIsFocused } from '@react-navigation/native'
 import {Text, View, FlatList, ActivityIndicator} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import LinearGradient from 'react-native-linear-gradient';
@@ -10,21 +10,21 @@ import {signOutRequest} from '../../reducers/userReducer';
 import MapView, {PROVIDER_GOOGLE, Polyline, Circle} from 'react-native-maps';
 import styles from './styles';
 import Back from '../Icons/back.svg';
+import { locationSelector, setNavigating } from '../../reducers/locationReducer';
 
 const TrackDetails = ({route, navigation}) => {
+  const location = useSelector(locationSelector);
+ 
   const {id} = route.params;
 
   const dispatch = useDispatch();
   const records = useSelector(recordSelector);
-  useEffect(() => {
-    const unsubscribe1 = navigation.addListener('focus', () => {
-      console.log('FOCUS LISTENER RUNNING');
-    });
-  }, [navigation]);
+
+
 
   const record = records.find(item => item.id === id);
   const initialCoords = record.locations[0].coords;
-  console.log(initialCoords);
+  //console.log(initialCoords);
 
   return (
     <LinearGradient

@@ -7,6 +7,8 @@ export const recordSelector=state=>state.recordState;
 
 export const CREATE_RECORD_REQUEST='record/create/request';
 export const FETCH_RECORDS='record/create';
+export const DELETE_RECORD='record/delete';
+export const DELETE_RECORD_REQUEST='record/delete/request';
 export const SET_RECORDS='record/set';
 
 
@@ -25,6 +27,16 @@ export const fetchRecords = () =>{
     
     return{
         type: FETCH_RECORDS,
+      
+    }
+}
+export const deleteRecordRequest = (id) =>{
+    
+    return{
+        type: DELETE_RECORD_REQUEST,
+        payload:{
+            id
+        }
       
     }
 }

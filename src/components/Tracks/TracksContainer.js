@@ -45,7 +45,7 @@ const TracksContainer = () => {
         :
      
         <Tracks.Screen name="Create" component={TrackCreateNoMock} />}
-        <Tracks.Screen name="Index" component={TracksIndex} />
+        <Tracks.Screen name="Index" component={TracksIndex}/>
         <Tracks.Screen name="Details" component={TrackDetails} />
         <Tracks.Screen name="Account" component={AccountScreen} />
       </Tracks.Navigator>

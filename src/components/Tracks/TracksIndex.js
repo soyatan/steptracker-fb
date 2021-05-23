@@ -5,7 +5,7 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import LinearGradient from 'react-native-linear-gradient';
 import SplashScreen from 'react-native-splash-screen';
 import {useDispatch, useSelector} from 'react-redux';
-import {fetchRecords, recordSelector} from '../../reducers/recordReducer';
+import {fetchRecords, recordSelector, deleteRecordRequest} from '../../reducers/recordReducer';
 import {signOutRequest} from '../../reducers/userReducer';
 import { usersSelector } from '../../reducers/usersReducer';
 import Play from '../Icons/play.svg';
@@ -23,7 +23,7 @@ const TracksIndex = ({navigation}) => {
 
   const records = useSelector(recordSelector);
   const users = useSelector(usersSelector);
-  console.log(users)
+  
 
   const findUser = (id) =>{
   if (records){
@@ -33,7 +33,9 @@ const TracksIndex = ({navigation}) => {
   else return 'unknown user'
 }
 
-
+  const deleteRecord = (id) =>{
+    dispatch(deleteRecordRequest(id))
+  }
 
 
   return (
@@ -66,7 +68,9 @@ const TracksIndex = ({navigation}) => {
               } style={styles.recordplaybutton}> 
                   <Play width={35} height={35} />
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.deletebutton}> 
+                <TouchableOpacity onPress={() =>
+                deleteRecord(item.item.id)
+              } style={styles.deletebutton}> 
                   <Garbage width={25} height={25} />
                 </TouchableOpacity>
               </View>

@@ -8,14 +8,16 @@ import TracksIndex from './TracksIndex';
 import TrackCreate from './TrackCreate';
 import TrackDetails from './TrackDetails';
 import styles from './styles';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { mockSelector } from '../../reducers/mockReducer';
 import TrackCreateNoMock from './TrackCreateNoMock';
 import MockChooseScreen from '../Account/MockChooseScreen';
+import { fetchUsersRequest } from '../../reducers/usersReducer';
 
 const Tracks = createBottomTabNavigator();
 
 const TracksContainer = () => {
+  const dispatch = useDispatch();
   const mockStatus = useSelector(mockSelector);
   const tabBarOptions = () => {
     return {
@@ -24,9 +26,13 @@ const TracksContainer = () => {
       labelStyle: styles.tabbartitle,
       allowFontScaling: true,
       style: styles.tabbar,
+      keyboardHidesTabBar:true
     };
   };
 
+  useEffect(() => {
+    dispatch(fetchUsersRequest());
+  }, [])
   return (
     <>
       <StatusBar barStyle={'light-content'} backgroundColor={'#4f5b66'} />

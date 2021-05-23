@@ -9,13 +9,15 @@ import {persistStore,persistReducer} from 'redux-persist'
 
 import { userReducer } from './userReducer';
 import { mockReducer } from './mockReducer';
+import { usersReducer } from './usersReducer';
 
 const Reducers=combineReducers({
     userState:userReducer,
     loadingState:loadingReducer,
     locationState:locationReducer,
     recordState:recordReducer,
-    mockState:mockReducer
+    mockState:mockReducer,
+    usersState:usersReducer
     });
 
 let persistedReducer=Reducers;

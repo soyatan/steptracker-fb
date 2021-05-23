@@ -10,9 +10,7 @@ const Map = () => {
   const {currentLocation} = useSelector(locationSelector);
   const {locations} = useSelector(locationSelector);
   const records = useSelector(recordSelector);
-  //    console.log(records[1].locations)
-
-  //console.log(locations)
+  
   if (!currentLocation) {
     return <ActivityIndicator size="large" style={{marginTop: 200}} />;
   }

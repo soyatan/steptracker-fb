@@ -30,26 +30,28 @@ import {
   setRecords,
 } from '../recordReducer';
 import {setNavigating} from '../locationReducer';
+import database from '@react-native-firebase/database';
 
 function* createFetchRecords() {
   try {
     console.log('action');
 
-    const {token} = yield select(userSelector);
+    const curUsers = yield select(userSelector);
+    console.log('curusers',curUsers)
+    let records = [];
+        yield database().ref('/records').once('value', 
+        function(snapshot) {
+            snapshot.forEach(function(childSnapshot) {
+                var childKey=childSnapshot.key;
+                var childData=childSnapshot.val();
+                //console.log('childKey',childKey,'childdata',childData)
+                let record={uid:childData.user,id:childKey,locations:childData.locations,name:childData.name};
+                
+                records.push(record);
+            })})
+      
 
-    console.log('fetching records by user: ', token);
-
-    const response = yield call(fetch, baseURL + '/tracks', {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + token,
-      },
-    });
-
-    let jres = yield response.json();
-    yield put(setRecords(jres));
+      yield put(setRecords(records));
 
     //yield put(setNavigating('index'));
   } catch (error) {

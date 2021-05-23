@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 
-import {Text, View} from 'react-native';
+import {Alert, Text, View} from 'react-native';
 
 import LinearGradient from 'react-native-linear-gradient';
 
@@ -41,6 +41,8 @@ const TrackCreate = ({navigation}) => {
   const isNavigate = location.navigate;
   const records = useSelector(recordSelector);
   
+
+  
   //console.log(useSelector(locationSelector))
 
   const startWatching = async () => {
@@ -66,12 +68,7 @@ const TrackCreate = ({navigation}) => {
     }
   };
 
-  database()
-  .ref('/')
-  .once('value')
-  .then(snapshot => {
-    console.log('User data: ', snapshot.val());
-  });
+  
 
   //on first render we startwatching
   useEffect(() => {
@@ -147,8 +144,11 @@ const TrackCreate = ({navigation}) => {
   }, [isNavigate]);
 
   const startRecording = async () => {
-    setIsRecording(true);
-    
+    if(trackName.length<3){
+      alert('please enter valid name for recording')}
+      else{
+        setIsRecording(true);
+      }
   };
 
   const stopRecording = async () => {

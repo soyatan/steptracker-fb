@@ -20,6 +20,7 @@ const TracksIndex = ({navigation}) => {
   }, [navigation]);
 
   const records = useSelector(recordSelector);
+  console.log('records are',records)
 
 
 

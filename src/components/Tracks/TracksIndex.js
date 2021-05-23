@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 
-import {Text, View, FlatList, ActivityIndicator} from 'react-native';
+import {Text, View, FlatList, ActivityIndicator, Touchable} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import LinearGradient from 'react-native-linear-gradient';
 import SplashScreen from 'react-native-splash-screen';
@@ -10,6 +10,7 @@ import {signOutRequest} from '../../reducers/userReducer';
 import { usersSelector } from '../../reducers/usersReducer';
 import Play from '../Icons/play.svg';
 import styles from './styles';
+import Garbage from '../Icons/garbage.svg';
 
 const TracksIndex = ({navigation}) => {
   const dispatch = useDispatch();
@@ -37,7 +38,7 @@ const TracksIndex = ({navigation}) => {
 
   return (
     <LinearGradient
-      colors={['#343d46', '#65737e']}
+      colors={['#cf7ecf', '#65737e']}
       style={styles.container}
       start={{x: 0, y: 0}}
       end={{x: 1, y: 1}}>
@@ -45,21 +46,33 @@ const TracksIndex = ({navigation}) => {
         <ActivityIndicator size="large" />
        : 
         <FlatList
+          showsVerticalScrollIndicator={false}
           data={records}
           keyExtractor={(item, index) => index}
           renderItem={item => (
             
-            <TouchableOpacity
-              style={styles.recordslist}
-              onPress={() =>
+            <View style={styles.recordslist}>
+              <View style={styles.recorditemleftcontainer}> 
+                <View style={styles.recorditemname}> 
+                  <Text style={styles.titletext}> {item.item.name} </Text>
+                </View>
+                <View style={styles.recordusername}> 
+                  <Text style={styles.titletext2}> {findUser(item.item.uid)} </Text>
+                </View>
+              </View>
+              <View style={styles.recorditemrightcontainer}> 
+                <TouchableOpacity onPress={() =>
                 navigation.navigate('Details', {id: item.item.id})
-              }>
-              <Text style={styles.listtext}> {item.index} </Text>
-              <Text style={styles.listtext}> {item.item.name} </Text>
-              <Text style={styles.listtext}> {findUser(item.item.uid)} </Text>
-              <Play width={35} height={35} />
+              } style={styles.recordplaybutton}> 
+                  <Play width={35} height={35} />
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.deletebutton}> 
+                  <Garbage width={25} height={25} />
+                </TouchableOpacity>
+              </View>
+              
 
-          </TouchableOpacity>
+          </View>
           )}
 
     />

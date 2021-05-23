@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {ActivityIndicator, Text} from 'react-native';
 import styles from './styles';
 import MapView, {PROVIDER_GOOGLE, Polyline, Circle} from 'react-native-maps';
@@ -10,7 +10,7 @@ const Map = () => {
   const {currentLocation} = useSelector(locationSelector);
   const {locations} = useSelector(locationSelector);
   const records = useSelector(recordSelector);
-  
+
   if (!currentLocation) {
     return <ActivityIndicator size="large" style={{marginTop: 200}} />;
   }

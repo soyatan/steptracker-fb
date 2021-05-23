@@ -85,6 +85,7 @@ const TrackCreate = ({navigation}) => {
       console.log('CREATE SCREEN ON');
       dispatch(setNavigating('create'))
       if (!isTracking) {
+        dispatch(eraseLocations());
         setTracking(true);
         startWatching();
       }

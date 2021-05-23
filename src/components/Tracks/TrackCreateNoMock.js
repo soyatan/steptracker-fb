@@ -77,6 +77,7 @@ const TrackCreateNoMock = ({navigation}) => {
     const unsubscribe1 = navigation.addListener('focus', () => {
       console.log('FOCUS LISTENER RUNNING');
       if (!isTracking) {
+        dispatch(eraseLocations());
         setTracking(true);
         startWatching();
       }

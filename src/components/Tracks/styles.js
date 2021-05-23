@@ -67,14 +67,42 @@ export default styles = StyleSheet.create({
   },
   iconcontainer: {
     margin: 15,
+    marginTop:40,
     alignItems: 'center',
     justifyContent: 'center',
   },
   recordslist: {
     flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    margin: 10,
+    justifyContent:'center',
+    flexDirection:'row',
+    margin:5,
+    borderWidth:0.5,
+    padding:5,
+    width:w*0.9,
+    height:h*0.08,
+  },
+  recorditemleftcontainer:{
+    justifyContent:'center',
+    flex:6,
+    textAlignVertical:'center',
+    padding:4,
+  },
+  recordplaybutton:{
+  flex:1,
+  justifyContent:'center'
+  },
+  deletebutton:{
+  flex:1,
+  justifyContent:'center'
+  },
+
+
+  recorditemrightcontainer:{
+    flex:2,
+    flexDirection:'row',
+    justifyContent:'space-between'
+    
+    
   },
   listtext: {
     fontSize: 22,

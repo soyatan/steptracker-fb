@@ -26,6 +26,7 @@ import {
   recordSelector,
 } from '../../reducers/recordReducer';
 import _mockLocation from '../Map/_mockLocation';
+import database from '@react-native-firebase/database';
 
 const TrackCreate = ({navigation}) => {
   //_mockLocations();
@@ -34,13 +35,12 @@ const TrackCreate = ({navigation}) => {
   const [trackName, setTrackName] = useState('');
   const [isTracking, setTracking] = useState(true);
   const [isRecording, setIsRecording] = useState(false);
-
   const [subscriber, setSubscriber] = useState(null);
 
   const location = useSelector(locationSelector);
   const isNavigate = location.navigate;
   const records = useSelector(recordSelector);
-
+  
   //console.log(useSelector(locationSelector))
 
   const startWatching = async () => {
@@ -65,6 +65,13 @@ const TrackCreate = ({navigation}) => {
       setErr(error);
     }
   };
+
+  database()
+  .ref('/')
+  .once('value')
+  .then(snapshot => {
+    console.log('User data: ', snapshot.val());
+  });
 
   //on first render we startwatching
   useEffect(() => {

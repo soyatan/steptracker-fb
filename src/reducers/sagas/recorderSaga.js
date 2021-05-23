@@ -44,8 +44,8 @@ function* createTrackRequestz(action) {
     const user = yield select (userSelector);
     
     const record={name: name, locations: locations, user:user.user.uid};
-    
-    yield database().ref('/records').set(record)
+    console.log(record)
+    yield database().ref('/records').push(record)
 
     
     

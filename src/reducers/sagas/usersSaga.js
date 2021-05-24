@@ -40,7 +40,7 @@ export function* checkUserInEmpList (){
     const curUser=yield select(userSelector);
     //console.log('curuser',curUser)
     const curUsers=yield select(usersSelector)
-    console.log(curUsers)
+    
 
     if (curUser) {
         if (curUsers.some(item=>item.username===curUser.user.email)){

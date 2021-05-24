@@ -29,7 +29,9 @@ const TracksContainer = () => {
       keyboardHidesTabBar:true
     };
   };
-
+  const tabBarCreateLabel = () =>{
+    return null
+  }
   useEffect(() => {
     dispatch(fetchUsersRequest());
   }, [])
@@ -46,7 +48,7 @@ const TracksContainer = () => {
      
         <Tracks.Screen name="Create" component={TrackCreateNoMock} />}
         <Tracks.Screen name="Index" component={TracksIndex}/>
-        <Tracks.Screen name="Details" component={TrackDetails} />
+        <Tracks.Screen name="Details" component={TrackDetails} tabBarVisible={false} />
         <Tracks.Screen name="Account" component={AccountScreen} />
       </Tracks.Navigator>
     </>

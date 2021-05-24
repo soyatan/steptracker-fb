@@ -10,6 +10,7 @@ export const FETCH_RECORDS='record/create';
 export const DELETE_RECORD='record/delete';
 export const DELETE_RECORD_REQUEST='record/delete/request';
 export const SET_RECORDS='record/set';
+export const ADD_RECORD='record/add';
 
 
 export const createRecordRequest = (locations,name) =>{
@@ -40,6 +41,16 @@ export const deleteRecordRequest = (id) =>{
       
     }
 }
+export const deleteRecord = (id) =>{
+    
+    return{
+        type: DELETE_RECORD,
+        payload:{
+            id
+        }
+      
+    }
+}
 
 export const setRecords = (records) =>{
     
@@ -52,10 +63,24 @@ export const setRecords = (records) =>{
     }
 }
 
+export const addRecord = (record) =>{
+    
+    return{
+        type: ADD_RECORD,
+        payload:{
+            record
+        }
+      
+    }
+}
+
 export const recordReducer =(state=INITIAL_STATE,action)=>{
     switch(action.type){
         case SET_RECORDS:
             return action.payload.records
+        case DELETE_RECORD:
+            const newState=state.filter(item=>item.id!==action.payload.id)
+            return newState;
         
     default:
         return state;

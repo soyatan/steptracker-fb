@@ -11,6 +11,7 @@ import { usersSelector } from '../../reducers/usersReducer';
 import Play from '../Icons/play.svg';
 import styles from './styles';
 import Garbage from '../Icons/garbage.svg';
+import { setNavigating } from '../../reducers/locationReducer';
 
 const TracksIndex = ({navigation}) => {
   const dispatch = useDispatch();
@@ -18,7 +19,9 @@ const TracksIndex = ({navigation}) => {
     const unsubscribe1 = navigation.addListener('focus',()=>{
       console.log('FOCUS LISTENER RUNNING');
       dispatch(fetchRecords());
+      dispatch(setNavigating('index'))
     });
+    return unsubscribe1;
   }, [navigation]);
 
   const records = useSelector(recordSelector);
@@ -48,6 +51,7 @@ const TracksIndex = ({navigation}) => {
         <ActivityIndicator size="large" />
        : 
         <FlatList
+          inverted
           showsVerticalScrollIndicator={false}
           data={records}
           keyExtractor={(item, index) => index}

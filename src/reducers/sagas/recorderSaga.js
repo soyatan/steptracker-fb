@@ -3,28 +3,14 @@ import {
   fork,
   select,
   put,
-  take,
-  apply,
-  delay,
-  call,
-  race,
-  all,
-  effectTypes,
   takeLatest,
 } from 'redux-saga/effects';
-import {baseURL} from '../../API/baseURL';
+
 import {
   addError,
-  setUserToken,
-  SIGNUP_REQUEST,
-  SIGNIN_REQUEST,
-  SIGNOUT_REQUEST,
-  signOutCurrentUser,
-  userReducer,
   userSelector,
 } from '../userReducer';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import {CREATE_RECORD_REQUEST} from '../recordReducer';
+import {addRecord, CREATE_RECORD_REQUEST, deleteRecord, DELETE_RECORD_REQUEST} from '../recordReducer';
 import {setNavigating} from '../locationReducer';
 import database from '@react-native-firebase/database';
 
@@ -42,12 +28,28 @@ function* createTrackRequestz(action) {
       locations.length,
     );
     const user = yield select (userSelector);
-    
+    console.log('user',user)
     const record={name: name, locations: locations, user:user.user.uid};
+    console.log('record',record)
     
     yield database().ref('/records').push(record)
-
+    
     yield put(setNavigating('index'));
+  } catch (error) {
+    yield put(addError('Something went wrong with sign-up, please try again'));
+  }
+}
+
+function* deleteTrackRequestz(action) {
+  const {id} = action.payload;
+ 
+ 
+  try {
+    console.log('passing a delete for the item id',id)
+    yield put(deleteRecord(id))
+    yield database().ref('/records/'+id).remove()
+    
+    
   } catch (error) {
     yield put(addError('Something went wrong with sign-up, please try again'));
   }
@@ -57,4 +59,8 @@ function* watchRecordRequest() {
   yield takeLatest(CREATE_RECORD_REQUEST, createTrackRequestz);
 }
 
-export const recorderSaga = [fork(watchRecordRequest)];
+function* watchDeleteRecordRequest() {
+  yield takeLatest(DELETE_RECORD_REQUEST, deleteTrackRequestz);
+}
+
+export const recorderSaga = [fork(watchRecordRequest),fork(watchDeleteRecordRequest)];

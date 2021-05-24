@@ -28,6 +28,7 @@ import {
 } from '../../reducers/recordReducer';
 import {_mockLocation, _removeLocListener} from '../Map/_mockLocation';
 import database from '@react-native-firebase/database';
+import { initCoordSelector } from '../../reducers/initcoordsreducer';
 
 const TrackCreate = ({navigation}) => {
   //_mockLocations();
@@ -41,7 +42,7 @@ const TrackCreate = ({navigation}) => {
   const location = useSelector(locationSelector);
   const isNavigate = location.navigate;
 
-
+  const initCoord=useSelector(initCoordSelector)
 // console.log('isTracking-isrecording-subscriber',isTracking,isRecording,subscriber)
   
 
@@ -74,7 +75,7 @@ const TrackCreate = ({navigation}) => {
 
   //on first render we startwatching
   useEffect(() => {
-    _mockLocation(29.1197331, 40.9413056);
+    _mockLocation(initCoord.lon,initCoord.lat);
     startWatching();
    
   }, []);
@@ -179,7 +180,7 @@ const TrackCreate = ({navigation}) => {
       <View style={styles.bottomcontainer}>
         <View style={styles.trackinputcontainer}>
           <Text style={styles.titletext2}>
-            Please Enter a Name for New Track
+            NEW TRACK NAME
           </Text>
           <TracknameInput
             onChangeText={setTrackName}

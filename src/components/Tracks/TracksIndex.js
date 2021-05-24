@@ -29,7 +29,7 @@ const TracksIndex = ({navigation}) => {
   
 
   const findUser = (id) =>{
-  if (records){
+  if (users){
     const curUser=users.find(user=>user.id===id);
     return curUser.username
   }
@@ -60,7 +60,7 @@ const TracksIndex = ({navigation}) => {
             <View style={styles.recordslist}>
               <View style={styles.recorditemleftcontainer}> 
                 <View style={styles.recorditemname}> 
-                  <Text style={styles.titletext}> {item.item.name} </Text>
+                  <Text style={styles.titletext} numberOfLines={1} > {item.item.name} </Text>
                 </View>
                 <View style={styles.recordusername}> 
                   <Text style={styles.titletext2}> {findUser(item.item.uid)} </Text>

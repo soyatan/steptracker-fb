@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 
-import {Text, View} from 'react-native';
+import {Alert, Text, View} from 'react-native';
 
 import LinearGradient from 'react-native-linear-gradient';
 
@@ -18,6 +18,7 @@ import {
   locationSelector,
   addLocation,
   eraseLocations,
+  setNavigating,
 } from '../../reducers/locationReducer';
 import TracknameInput from './TracknameInput';
 import RecordButton from './RecordButton';
@@ -25,23 +26,25 @@ import {
   createRecordRequest,
   recordSelector,
 } from '../../reducers/recordReducer';
-//import _mockLocation from '../Map/_mockLocation';
+//import {_mockLocation, _removeLocListener} from '../Map/_mockLocation';
+import database from '@react-native-firebase/database';
 
-const TrackCreateNoMock = ({navigation}) => {
+const TrackCreate = ({navigation}) => {
   //_mockLocations();
   const dispatch = useDispatch();
   const [err, setErr] = useState(null);
   const [trackName, setTrackName] = useState('');
   const [isTracking, setTracking] = useState(true);
   const [isRecording, setIsRecording] = useState(false);
-
   const [subscriber, setSubscriber] = useState(null);
 
   const location = useSelector(locationSelector);
   const isNavigate = location.navigate;
-  const records = useSelector(recordSelector);
 
-  const {recording} = useSelector(locationSelector);
+
+// console.log('isTracking-isrecording-subscriber',isTracking,isRecording,subscriber)
+  
+
 
   const startWatching = async () => {
     try {
@@ -65,25 +68,31 @@ const TrackCreateNoMock = ({navigation}) => {
       setErr(error);
     }
   };
+  
+
+  
 
   //on first render we startwatching
   useEffect(() => {
     //_mockLocation(29.1197331, 40.9413056);
     startWatching();
+   
   }, []);
 
   //on focus if not tracking, we start tracking
   useEffect(() => {
     const unsubscribe1 = navigation.addListener('focus', () => {
-      console.log('FOCUS LISTENER RUNNING');
+      console.log('CREATE SCREEN ON');
+      dispatch(setNavigating('create'))
       if (!isTracking) {
         dispatch(eraseLocations());
         setTracking(true);
         startWatching();
       }
-      
+      setTrackName('');
     });
-  }, [navigation, isTracking, isRecording]);
+    return unsubscribe1;
+  }, [navigation,isTracking]);
 
   //on blur if not recording stop tracking
   useEffect(() => {
@@ -91,31 +100,31 @@ const TrackCreateNoMock = ({navigation}) => {
       const unsubscribe2 = navigation.addListener('blur', () => {
         console.log('blur on navigation');
         {
-          console.log('changing tracking to false');
+          console.log('TRACKING OFF');
           setTracking(false);
         }
       });
       return unsubscribe2;
     }
+ 
   }, [navigation, isTracking, isRecording]);
 
-  //set tracking false yapıldığında duruyor
+  //action when stop tracking
 
   useEffect(() => {
     if (!isTracking) {
-      console.log('TRACKING FALSE YAPILDI');
+      console.log('TRACKING OFF');
       if (subscriber) {
         subscriber.remove();
         setSubscriber(null);
       }
     }
   }, [isTracking, isRecording]);
-  //navigation olunca hook çalıaşcak isfocused
-  //ve bunun üzerine startwatching çalışacak
-  //
+
+  
   useEffect(() => {
     if (isRecording) {
-      console.log('RECORDING STARTED');
+      console.log('RECORDING ON');
       dispatch(eraseLocations());
       if (subscriber) {
         subscriber.remove();
@@ -124,12 +133,12 @@ const TrackCreateNoMock = ({navigation}) => {
       startWatching();
     }
     if (!isRecording) {
-      console.log('RECORDING DISABLED');
+      console.log('RECORDING OFF');
       if (subscriber) {
         subscriber.remove();
         setSubscriber(null);
       }
-      startWatching();
+      //startWatching();
       dispatch(createRecordRequest(location.locations, trackName));
     }
   }, [isRecording]);
@@ -141,8 +150,11 @@ const TrackCreateNoMock = ({navigation}) => {
   }, [isNavigate]);
 
   const startRecording = async () => {
-    setIsRecording(true);
-    //await setTracking(true);
+    if(trackName.length<3){
+      alert('please enter valid name for recording')}
+      else{
+        setIsRecording(true);
+      }
   };
 
   const stopRecording = async () => {
@@ -162,7 +174,7 @@ const TrackCreateNoMock = ({navigation}) => {
       <Map />
 
       {err ? (
-        <Text style={{color: 'red'}}>Please dasdasdasdsadservices</Text>
+        <Text style={{color: 'red'}}>Please enable location services</Text>
       ) : null}
       <View style={styles.bottomcontainer}>
         <View style={styles.trackinputcontainer}>
@@ -171,7 +183,7 @@ const TrackCreateNoMock = ({navigation}) => {
           </Text>
           <TracknameInput
             onChangeText={setTrackName}
-            staate={trackName}
+            state={trackName}
             placeholder={'My big trip'}
           />
         </View>
@@ -186,4 +198,4 @@ const TrackCreateNoMock = ({navigation}) => {
   );
 };
 
-export default TrackCreateNoMock;
+export default TrackCreate;

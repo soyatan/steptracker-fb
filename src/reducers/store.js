@@ -10,6 +10,7 @@ import {persistStore,persistReducer} from 'redux-persist'
 import { userReducer } from './userReducer';
 import { mockReducer } from './mockReducer';
 import { usersReducer } from './usersReducer';
+import { initcoordsreducer } from './initcoordsreducer';
 
 const Reducers=combineReducers({
     userState:userReducer,
@@ -17,7 +18,8 @@ const Reducers=combineReducers({
     locationState:locationReducer,
     recordState:recordReducer,
     mockState:mockReducer,
-    usersState:usersReducer
+    usersState:usersReducer,
+    initcoordState:initcoordsreducer
     });
 
 let persistedReducer=Reducers;

@@ -14,13 +14,25 @@ export default styles = StyleSheet.create({
     borderWidth:0.4,
     alignContent:'center',
     padding:10,
-    width:300,
+    width:340,
     alignItems:'center'
+  },
+  errortext:{color:'red'},
+  inslong:{
+    flex:1,
+    alignItems:'center',
     
-
+    backgroundColor:'#4d5757'
   },
   mockoptiontext:{
     fontSize:20,
-    fontWeight:'bold'
+    fontWeight:'bold',
+    textAlign:'auto'
+  },
+  mockoptiontext2:{
+    fontSize:18,
+    fontWeight:'bold',
+    textAlign:'auto',
+    color:'gray'
   }
 });

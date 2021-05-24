@@ -12,7 +12,9 @@ const REDUX_PERSIST = {
     // An empty array means 'don't store any reducers' -> infinitered/ignite#409
     whitelist: [
       'mockState',
-      'userState'
+      'userState',
+      'initcoordState'
+    
     ],
   },
 };

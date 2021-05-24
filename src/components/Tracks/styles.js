@@ -19,24 +19,63 @@ export default styles = StyleSheet.create({
   },
   bottomcontainer: {
     flexGrow: 1,
+    
+    
+    height:h*0.3,
+    width:w*0.96,
+    alignItems:'center',
+    justifyContent:'center',
+    marginBottom:56,
   },
+  inputscontainer:{
+    flexDirection:'row',
+    flex:1
+  },
+
 
   trackinputcontainer: {
     marginTop: 10,
     width: w * 0.95,
     justifyContent: 'space-between',
     alignItems: 'center',
+    
+    
+  },
+  coordinputcontainer: {
+    marginTop: 10,
+    width: w * 0.95,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    
+    flex:1
   },
   trackinput: {
-    width: w * 0.5,
+    width: w * 0.45,
     borderWidth: 1,
     borderRadius: 20,
     margin: 5,
     paddingLeft: 5,
     paddingRight: 5,
     borderColor: 'white',
+    
   },
+  coordinput:{
+    width: w * 0.3,
+    borderWidth: 1,
+    borderRadius: 20,
+    margin: 5,
+    paddingLeft: 5,
+    paddingRight: 5,  
+    borderColor: 'white',
+    
+  },
+
   textinput: {},
+  textinputsmall:{
+    fontSize:13,
+    textAlign:'auto',
+    color:'white'
+  },
   tabbar: {
     backgroundColor: '#38353a',
   },
@@ -45,7 +84,7 @@ export default styles = StyleSheet.create({
     marginBottom: 5,
   },
   recordingbuttoncontainer: {
- 
+    flex:1,
     width: w * 0.9,
     alignItems: 'center',
     
@@ -62,8 +101,9 @@ export default styles = StyleSheet.create({
     textAlignVertical: 'center',
   },
   titletext2: {
-    fontSize: 12,
+    fontSize: 15,
     color: 'white',
+    textAlign:'center'
   },
   iconcontainer: {
     margin: 15,

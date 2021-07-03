@@ -12,41 +12,36 @@ import {setUserToken, userSelector} from '../../reducers/userReducer';
 import {loadingSelector, switchLoading} from '../../reducers/loadingReducer';
 import auth from '@react-native-firebase/auth';
 
-
-
-
 const Main = createStackNavigator();
 
 const MainContainer = () => {
   const [initializing, setInitializing] = useState(true);
   function onAuthStateChanged(user) {
-    if (initializing) {setInitializing(false);}
+    if (initializing) {
+      setInitializing(false);
+    }
   }
-  
 
   useEffect(() => {
     const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
     return subscriber; // unsubscribe on unmount
   }, []);
 
-
   const currentUser = useSelector(userSelector);
 
   const loadingStatus = useSelector(loadingSelector);
 
-
-
-  return loadingStatus ? null : 
+  return loadingStatus ? null : (
     <NavigationContainer>
       <Main.Navigator screenOptions={{headerShown: false}}>
-        {!currentUser.status ? 
+        {!currentUser.status ? (
           <Main.Screen name="Auth" component={AuthContainer} />
-         : 
+        ) : (
           <Main.Screen name="Tracks" component={TracksContainer} />
-        }
+        )}
       </Main.Navigator>
     </NavigationContainer>
-  
+  );
 };
 
 export default MainContainer;

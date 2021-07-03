@@ -4,10 +4,10 @@ let windowSize = Dimensions.get('window');
 export const width = windowSize.width;
 export const height = windowSize.height;
 
-export const Metrics= {
-    width,
-    height,
-    marginHorizontal: width * 0.05,
-    borderRadius: 8,
-    textMargin: width * 0.03,
+export const Metrics = {
+  width,
+  height,
+  marginHorizontal: width * 0.05,
+  borderRadius: 8,
+  textMargin: width * 0.03,
 };

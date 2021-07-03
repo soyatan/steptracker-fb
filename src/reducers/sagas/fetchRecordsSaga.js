@@ -37,21 +37,27 @@ function* createFetchRecords() {
     console.log('action');
 
     const curUsers = yield select(userSelector);
-    console.log('curusers',curUsers)
+    console.log('curusers', curUsers);
     let records = [];
-        yield database().ref('/records').once('value', 
-        function(snapshot) {
-            snapshot.forEach(function(childSnapshot) {
-                var childKey=childSnapshot.key;
-                var childData=childSnapshot.val();
-                //console.log('childKey',childKey,'childdata',childData)
-                let record={uid:childData.user,id:childKey,locations:childData.locations,name:childData.name};
-                
-                records.push(record);
-            })})
-      
+    yield database()
+      .ref('/records')
+      .once('value', function (snapshot) {
+        snapshot.forEach(function (childSnapshot) {
+          var childKey = childSnapshot.key;
+          var childData = childSnapshot.val();
+          //console.log('childKey',childKey,'childdata',childData)
+          let record = {
+            uid: childData.user,
+            id: childKey,
+            locations: childData.locations,
+            name: childData.name,
+          };
 
-      yield put(setRecords(records));
+          records.push(record);
+        });
+      });
+
+    yield put(setRecords(records));
 
     //yield put(setNavigating('index'));
   } catch (error) {

@@ -36,8 +36,6 @@ export default CoordInput = ({
           secureTextEntry={secureTextEntry}
           keyboardType={keyboardType}
           onEndEditing={onEndEditing}
-          
-          
         />
       </View>
     </>

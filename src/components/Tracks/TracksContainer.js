@@ -8,11 +8,11 @@ import TracksIndex from './TracksIndex';
 import TrackCreate from './TrackCreate';
 import TrackDetails from './TrackDetails';
 import styles from './styles';
-import { useDispatch, useSelector } from 'react-redux';
-import { mockSelector } from '../../reducers/mockReducer';
+import {useDispatch, useSelector} from 'react-redux';
+import {mockSelector} from '../../reducers/mockReducer';
 import TrackCreateNoMock from './TrackCreateNoMock';
 import MockChooseScreen from '../Account/MockChooseScreen';
-import { fetchUsersRequest } from '../../reducers/usersReducer';
+import {fetchUsersRequest} from '../../reducers/usersReducer';
 
 const Tracks = createBottomTabNavigator();
 
@@ -26,29 +26,32 @@ const TracksContainer = () => {
       labelStyle: styles.tabbartitle,
       allowFontScaling: true,
       style: styles.tabbar,
-      keyboardHidesTabBar:true
+      keyboardHidesTabBar: true,
     };
   };
-  const tabBarCreateLabel = () =>{
-    return null
-  }
+  const tabBarCreateLabel = () => {
+    return null;
+  };
   useEffect(() => {
     dispatch(fetchUsersRequest());
-  }, [])
+  }, []);
   return (
     <>
       <StatusBar barStyle={'light-content'} backgroundColor={'#4f5b66'} />
       <Tracks.Navigator tabBarOptions={tabBarOptions()}>
-      {mockStatus==='begin'?
-        <Tracks.Screen name="Mock" component={MockChooseScreen} />
-        :
-      mockStatus==='mock'?
-        <Tracks.Screen name="Create" component={TrackCreate} />
-        :
-     
-        <Tracks.Screen name="Create" component={TrackCreateNoMock} />}
-        <Tracks.Screen name="Index" component={TracksIndex}/>
-        <Tracks.Screen name="Details" component={TrackDetails} tabBarVisible={false} />
+        {mockStatus === 'begin' ? (
+          <Tracks.Screen name="Mock" component={MockChooseScreen} />
+        ) : mockStatus === 'mock' ? (
+          <Tracks.Screen name="Create" component={TrackCreate} />
+        ) : (
+          <Tracks.Screen name="Create" component={TrackCreateNoMock} />
+        )}
+        <Tracks.Screen name="Index" component={TracksIndex} />
+        <Tracks.Screen
+          name="Details"
+          component={TrackDetails}
+          tabBarVisible={false}
+        />
         <Tracks.Screen name="Account" component={AccountScreen} />
       </Tracks.Navigator>
     </>

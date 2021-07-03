@@ -1,12 +1,9 @@
 import * as Location from 'expo-location';
 
-
-export const _removeLocListener = () =>{
+export const _removeLocListener = () => {
   Location.EventEmitter.removeAllListeners;
   Location.EventEmitter.removeSubscription('Expo.locationChanged');
-}
-
-
+};
 
 export const _mockLocation = (longs, lats) => {
   /*

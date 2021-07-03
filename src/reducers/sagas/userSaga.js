@@ -23,7 +23,7 @@ function* signUpRequest(action) {
     };
     yield call(signUp, email, password);
     let user = auth.currentUser;
-    
+
     yield put(setUserToken(user));
   } catch (error) {
     yield put(addError('Something went wrong with sign-up, please try again'));
@@ -49,10 +49,10 @@ function* signInRequest(action) {
 
 function* signOutRequest() {
   try {
-    const logout=async ()=>{
+    const logout = async () => {
       console.log('logout function running');
       return await auth.signOut();
-  }
+    };
     yield call(logout);
     yield put(signOutCurrentUser());
   } catch (e) {
